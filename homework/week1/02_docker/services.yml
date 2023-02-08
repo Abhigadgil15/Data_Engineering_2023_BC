@@ -1,0 +1,36 @@
+services:
+  postgres:
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=ny_taxi
+    volumes:
+      - "./ny_taxi_postgres_data:/var/lib/postgresql/data:rw"
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test : ["CMD","pg_isready", "-U","airflow"]
+      interval :5s
+      retries: 5
+    restart: always
+
+
+docker run -it  \
+      -e POSTGRES_USER="root" \
+      -e POSTGRES_PASSWORD="root" \
+      -e POSTGRES_DB="ny_taxi" \
+      -v c:/Users/ADMIN/DE_bootcamp/week1/2_docker/ny_taxi_postgres_data:/var/lib/postgresql/data \
+      -p 5433:5432 \
+postgres:13
+    
+
+
+###To run the python automated ingestion pipeline
+python upload-data_green_taxi.py \
+  --user=root \
+  --password=root \
+  --host=localhost \
+  --port=5433 \
+  --db=ny_taxi \
+  --table_name=green_taxi_trips \
