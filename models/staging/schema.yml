@@ -1,9 +1,8 @@
 version: 2
-
 source:
   - name: staging
     database: dbc-de-376018
-    schema: week_4
+    schema: week4
     tables:
       - name: green_tripdata
       - name: yellow_tripdata
