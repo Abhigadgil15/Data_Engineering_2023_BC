@@ -1,8 +1,16 @@
 version: 2
-source:
-  - name: staging
-    database: dbc-de-376018
-    schema: week4
-    tables:
-      - name: green_tripdata
-      - name: yellow_tripdata
+
+sources:
+    - name: staging
+      #For bigquery:
+      database: dbc-de-376018
+
+      # For postgres:
+      # database: production
+
+      schema: week4
+
+      # loaded_at_field: record_loaded_at
+      tables:
+        - name: green_tripdata
+        - name: yellow_tripdata
