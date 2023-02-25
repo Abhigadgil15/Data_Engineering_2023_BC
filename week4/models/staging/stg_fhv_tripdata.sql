@@ -1,7 +1,7 @@
 {{ config(materialized='view') }}
 
 select
-    {{ dbt_utils.surrogate_key(['dispatching_base_number', 'pickup_datetime']) }} as tripid, dispatching_base_number,
+    {{ dbt_utils.surrogate_key(['dispatching_base_num', 'pickup_datetime']) }} as tripid, dispatching_base_num,
 
     cast(PUlocationID as integer) as  pickup_locationid,
     cast(DOlocationID as integer) as dropoff_locationid,
